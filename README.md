@@ -1,4 +1,4 @@
-# CMOM
+# CMOM-RS
 Complex Multi-Ontology Matching through Recursive Subtraction (CMOM-RS) is an approach to 1:n complex ontology matching without restrictions on the arity of the mappings or on the number of ontologies.
 CMOM-RS combines two recursive strategies for candidate mapping generation: a strategy based on Large Language Models (LLM) that exploits the semantic space conveyed by embeddings through geometric operations; and a lexical strategy that relies on string similarity.
 
