@@ -13,6 +13,7 @@ import liseda.matcha.alignment.Alignment;
 import liseda.matcha.alignment.Mapping;
 import liseda.matcha.alignment.MappingRelation;
 import liseda.matcha.data.Map2Set;
+import liseda.matcha.io.ResourceManager;
 import liseda.matcha.ontology.Ontology;
 import liseda.matcha.ontology.lexicon.Lexicon;
 import liseda.matcha.semantics.EntityType;
@@ -21,10 +22,11 @@ import liseda.matcha.semantics.owl.ClassExpression;
 import liseda.matcha.semantics.owl.ClassIntersection;
 import liseda.matcha.semantics.owl.SimpleClass;
 import liseda.matcha.settings.Settings;
+import liseda.matcha.settings.StopList;
 
-public class ComplexMultiOntologyLexicalMatcher {
+public class MultiplexLexicalMatcher_clean {
 
-	protected static final String NAME = "Complex Multi-Ontology Lexical Matcher";
+	protected static final String NAME = "Multiplex Lexical Matcher";
 	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
 	private List<Ontology> tgts;
@@ -37,6 +39,12 @@ public class ComplexMultiOntologyLexicalMatcher {
 
 	SemanticMap sm = SemanticMap.getInstance();
 	Settings settings = Settings.getInstance();
+	
+	public MultiplexLexicalMatcher_clean() {
+
+		StopList.init(ResourceManager.getStopSet());
+
+	}
 
 	public Alignment match(List<Ontology> srcs, List<Ontology> tgts) {
 		System.out.println(dtf.format(LocalDateTime.now()) + " | Running " + NAME + " in match mode");
