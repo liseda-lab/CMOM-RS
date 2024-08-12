@@ -25,7 +25,7 @@ import liseda.matcha.settings.Settings;
 import liseda.matcha.settings.StopList;
 import liseda.matcha.similarity.Similarity;
 
-public class MultiplexLLMMatcher {
+public class ComplexMultiOntologyLLMMatcher {
 
 	protected static final String NAME = "Complex Multi-Ontology LLM Matcher";
 	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
