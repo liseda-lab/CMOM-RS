@@ -24,9 +24,9 @@ import liseda.matcha.semantics.owl.SimpleClass;
 import liseda.matcha.settings.Settings;
 import liseda.matcha.settings.StopList;
 
-public class MultiplexLexicalMatcher_clean {
+public class ComplexMultiOntologyLexicalMatcher {
 
-	protected static final String NAME = "Multiplex Lexical Matcher";
+	protected static final String NAME = "Complex Multi-Ontology Lexical Matcher";
 	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
 	private List<Ontology> tgts;
