@@ -10,7 +10,7 @@ Partial reference alignments were constructed from existing logical definitions 
 In addition to the code and partial reference alignments, the following files are also shared:
 - Alignment composed of manually validated non-reference mappings for the HP task
 - Alignments produced by CMOM-RS for all three tasks
-- PDF file of the paper
+- PDF file of the paper and appendix
 
 
 ### Citation:
