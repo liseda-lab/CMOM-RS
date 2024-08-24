@@ -7,7 +7,7 @@ Partial reference alignments were constructed from existing logical definitions 
 - Mammalian Phenotype Ontology (MP) vs. Cell Ontology (CL), Chemical Entities of Biological Interest (ChEBI), Gene Ontology (GO), Phenotype and Trait Ontology (PATO), Uber Anatomy Ontology (UBERON)
 - Worm Phenotype Ontology (WBP) vs. Chemical Entities of Biological Interest (ChEBI), Gene Ontology (GO), Phenotype and Trait Ontology (PATO), _C.elegans_ Gross Anatomy Ontology (WBbt)
 
-In addition to the code and reference alignments, the following files are also shared:
+In addition to the code and partial reference alignments, the following files are also shared:
 - Alignment composed of manually validated non-reference mappings for the HP task
 - Alignments produced by CMOM-RS for all three tasks
 - PDF file of the paper
