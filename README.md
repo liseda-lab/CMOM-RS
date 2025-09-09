@@ -8,9 +8,9 @@ The matching tasks used were:
 - Worm Phenotype Ontology (WBP) vs. Chemical Entities of Biological Interest (ChEBI), Gene Ontology (GO), Phenotype and Trait Ontology (PATO), _C.elegans_ Gross Anatomy Ontology (WBbt)
 
 The following files are shared:
-- Partial reference alignments for all tasks constructed from the existing logical definitions in each source ontology (and using above mentioned target ontologies)
-- Alignment composed of manually validated non-reference mappings for the HP task
-- Alignments produced by CMOM-RS for all three tasks
+- **reference-alignments:** Partial reference alignments for all tasks constructed from the existing logical definitions in each source ontology (and using above mentioned target ontologies)
+- **proposed-references:** Alignment composed of manually validated non-reference mappings for the HP task
+- **predicted-alignments:** Alignments produced by CMOM-RS for all three tasks
 - PDF file of the paper and appendix
 
 
