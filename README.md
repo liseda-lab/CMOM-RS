@@ -17,3 +17,8 @@ The following files are shared:
 
 ### Citation:
 M. C. Silva, D. Faria, and C. Pesquita. Complex multi-ontology alignment through geometric operations on language embeddings. In 27th European Conference on Artificial Intelligence. 2024
+
+### Methodology
+<p align="center">
+<img src="./CMOM-RS_overview.png" data-canonical-src="./CMOM-RS_overview.png" width="900" />
+</p>
