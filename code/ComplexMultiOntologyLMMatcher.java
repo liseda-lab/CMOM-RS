@@ -30,12 +30,10 @@ public class ComplexMultiOntologyLMMatcher {
 	protected static final String NAME = "Complex Multi-Ontology LLM Matcher";
 	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
-	private HashMap<String,float[]> embeddings;
 	private HashMap<String, HashSet<String>> src_name2uri;
 	private HashMap<String, HashSet<String>> tgt_name2uri;
 	private HashMap<String, HashSet<String>> tgt_name2namespace = new HashMap<String, HashSet<String>>();
 	private HashMap<HashSet<String>, HashSet<HashSet<String>>> tgt_name2combos = new HashMap<HashSet<String>, HashSet<HashSet<String>>>();
-	private int maxCardinality;
 
 	SemanticMap sm = SemanticMap.getInstance();
 	Settings settings = Settings.getInstance();
