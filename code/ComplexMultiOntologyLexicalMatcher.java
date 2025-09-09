@@ -26,7 +26,7 @@ import liseda.matcha.settings.StopList;
 
 public class ComplexMultiOntologyLexicalMatcher {
 
-	protected static final String NAME = "Complex Multi-Ontology Lexical Matcher";
+	protected static final String NAME = "Multiplex Lexical Matcher";
 	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
 	private List<Ontology> tgts;
@@ -34,13 +34,14 @@ public class ComplexMultiOntologyLexicalMatcher {
 	private Map2Set<String, String> wordNames;
 	private Map2Set<String, String> nameWords;
 	private HashSet<HashSet<String>> combinations;
-	private HashMap<String, Set<String>> src_name2uri;
-	private HashMap<String, Set<String>> tgt_name2uri;
+	private HashMap<String, HashSet<String>> src_name2uri;
+	private HashMap<String, HashSet<String>> tgt_name2uri;
 
 	SemanticMap sm = SemanticMap.getInstance();
 	Settings settings = Settings.getInstance();
+	GeometricOperations go = new GeometricOperations();
 	
-	public MultiplexLexicalMatcher_clean() {
+	public ComplexMultiOntologyLexicalMatcher() {
 
 		StopList.init(ResourceManager.getStopSet());
 
@@ -197,27 +198,15 @@ public class ComplexMultiOntologyLexicalMatcher {
 		HashSet<Mapping> mappings = new HashSet<Mapping>();
 		for(String src_uri : src_name2uri.get(src_name)) {
 			for(HashSet<String> combination : combinations) {
-				HashSet<String> uri_combinations = CMOMextras.findURIcombinations(tgt_name2uri, String.join(" # ", combination));
-				for(String uri_combination : uri_combinations)  {
-					double sim = calculateSimilarityByProduct(String.join(" # ", combination), uri_combination);
-					Mapping m = new Mapping(src_uri, createClassIntersection(uri_combination), sim, MappingRelation.EQUIVALENCE);
+				HashSet<HashSet<String>> uri_combinations = go.convertNameSetstoIRIsets(combination, tgt_name2uri);
+				for(HashSet<String> uri_combination : uri_combinations)  {
+					double sim = calculateSimilarityByProduct(String.join(" # ", combination), String.join(" # ",uri_combination));
+					Mapping m = new Mapping(src_uri, uri_combination, sim, MappingRelation.EQUIVALENCE);
 					mappings.add(m);
 				}
 			}
 		}
 		return mappings;
-	}
-
-	private String createClassIntersection(String tgt_uri_combination) {
-		String[] split = tgt_uri_combination.split(" # ");
-		List<ClassExpression> listCE = new ArrayList<ClassExpression>();
-
-		for(String uri : split) {
-			listCE.add(new SimpleClass(uri));
-		}
-		ClassIntersection ci = new ClassIntersection(listCE);
-		sm.addExpression(ci);
-		return ci.toString();
 	}
 
 	private Double calculateSimilarityByProduct(String tgt_name_combination, String tgt_uri_combination) {
@@ -228,10 +217,10 @@ public class ComplexMultiOntologyLexicalMatcher {
 		here: for(int i = 0; i < name_array.length; i++) {
 			String name = name_array[i];
 			String uri = uri_array[i];
-			String ns_t = CMOMextras.getNamespace(uri, false);
+			String ns_t = AuxiliaryMethods.getNamespace(uri, false);
 
 			for(Ontology tgt : tgts) {
-				String ns_o = CMOMextras.getNamespace(tgt.getURI(), true);
+				String ns_o = AuxiliaryMethods.getNamespace(tgt.getURI(), true);
 				if(tgt.contains(uri) && ns_o.equals(ns_t)) {
 					Lexicon lex = tgt.getLexicon(EntityType.CLASS);
 					product *= (1-lex.getCorrectedWeight(name, uri));
@@ -243,23 +232,23 @@ public class ComplexMultiOntologyLexicalMatcher {
 		return sim;
 	}
 
-	private HashMap<String, Set<String>> getNames(List<Ontology> ontologies) {
-		HashMap<String, Set<String>> name2uri = new HashMap<String, Set<String>>();
+	private HashMap<String, HashSet<String>> getNames(List<Ontology> ontologies) {
+		HashMap<String, HashSet<String>> name2uri = new HashMap<String, HashSet<String>>();
 		for(Ontology o : ontologies) {
 			Lexicon lex = o.getLexicon(EntityType.CLASS);
-			String namespace = CMOMextras.getNamespace(o.getURI(), true);
+			String namespace = AuxiliaryMethods.getNamespace(o.getURI(), true);
 
 			for(String uri : o.getEntities(EntityType.CLASS)) {
 				if(uri.toLowerCase().contains(namespace)) { // only internal classes
 					for(String name : lex.getNames(uri)) {
 						if(!name.contains("/") && name.length() > 2 && !name.contains("[") && !name.contains("{") && !name.contains(":") && !name.contains("&") && !name.contains("=") && !name.equals("[0-9]+")) {
 							if(name2uri.containsKey(name)) {
-								Set<String> set = name2uri.get(name);
+								HashSet<String> set = name2uri.get(name);
 								set.add(uri);
 								name2uri.replace(name, set);
 							}
 							else {
-								Set<String> set = new HashSet<String>();
+								HashSet<String> set = new HashSet<String>();
 								set.add(uri);
 								name2uri.put(name, set);
 							}
