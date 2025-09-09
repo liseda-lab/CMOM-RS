@@ -20,5 +20,5 @@ M. C. Silva, D. Faria, and C. Pesquita. Complex multi-ontology alignment through
 
 ### Methodology
 <p align="center">
-<img src="./CMOM-RS_overview.png" data-canonical-src="./CMOM-RS_overview.png" width="900" />
+<img src="./CMOM-RS_overview.png" data-canonical-src="./CMOM-RS_overview.png" width="900"/>
 </p>
