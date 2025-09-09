@@ -9,7 +9,7 @@ The matching tasks used were:
 
 The following files are shared:
 - **reference-alignments:** Partial reference alignments for all tasks constructed from the existing logical definitions in each source ontology (and using above mentioned target ontologies)
-- **proposed-references:** Alignment composed of manually validated non-reference mappings for the HP task
+- **proposed-reference:** Alignment composed of manually validated non-reference mappings for the HP task
 - **predicted-alignments:** Alignments produced by CMOM-RS for all three tasks
 - **code:** Code to run CMOM-RS (anchored on the ontology matching system [Matcha](https://ceur-ws.org/Vol-3897/oaei2024_paper3.pdf))
 - PDF file of the paper and appendix
